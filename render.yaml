@@ -39,5 +39,4 @@ services:
 
 databases:
   - name: proofpass-db
-    databaseName: postgres
-    user: postgres
+    plan: free
