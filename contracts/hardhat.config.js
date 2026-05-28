@@ -11,6 +11,10 @@ module.exports = {
     amoy: {
       url: process.env.POLYGON_AMOY_RPC_URL || "https://rpc-amoy.polygon.technology",
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
+    },
+    cloud: {
+      url: process.env.POLYGON_CLOUD_RPC_URL || "http://localhost:8545",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
     }
   }
 };

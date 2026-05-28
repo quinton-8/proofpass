@@ -1,0 +1,43 @@
+services:
+  # Hardhat Local Blockchain Node (Private Testnet in the Cloud)
+  - type: web
+    name: proofpass-node
+    env: node
+    buildCommand: cd contracts && npm install
+    startCommand: cd contracts && npx hardhat node --hostname 0.0.0.0 --port $PORT
+    envVars:
+      - key: PORT
+        value: 8545
+
+  # Go API Backend
+  - type: web
+    name: proofpass-backend
+    env: go
+    buildCommand: cd backend && go build -o main main.go
+    startCommand: cd backend && ./main
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: proofpass-db
+          property: connectionString
+      - key: POLYGON_RPC_URL
+        value: ${proofpass-node.url}
+      - key: CONTRACT_ADDRESS
+        sync: false # User will set this in Render dashboard after deploying the contract to the cloud node
+      - key: ISSUER_PRIVATE_KEY
+        value: ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 # Hardhat Account #0 default private key
+
+  # React Frontend Static Site
+  - type: web
+    name: proofpass-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    publishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: ${proofpass-backend.url}
+
+databases:
+  - name: proofpass-db
+    databaseName: postgres
+    user: postgres
