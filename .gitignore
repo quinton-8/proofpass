@@ -1,0 +1,25 @@
+# Node / Frontend / Contracts
+**/node_modules/
+**/dist/
+**/artifacts/
+**/cache/
+contracts/deployments/localhost.json
+
+# Environment / Secret Configurations
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+**/.env
+
+# Go
+/backend/backend
+/backend/main
+/backend/main-debug
+
+# IDE / System files
+.DS_Store
+.vscode/
+.idea/
+*.log

@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@theme {
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --color-primary: #8b5cf6;
+  --color-primary-dark: #6d28d9;
+  --color-secondary: #06b6d4;
+  --color-accent: #f43f5e;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #020617; /* Slate-950 */
+  color: #f8fafc; /* Slate-50 */
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-glow {
+  box-shadow: 0 8px 32px 0 rgba(139, 92, 246, 0.07);
+}
+
+/* Custom Gradient animations */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-slow {
+  background-size: 200% 200%;
+  animation: gradient-x 15s ease infinite;
+}
